@@ -1,30 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sq_fillit.h                                        :+:      :+:    :+:   */
+/*   sq_map.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saxiao <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/17 08:58:43 by saxiao            #+#    #+#             */
-/*   Updated: 2017/11/20 11:30:42 by saxiao           ###   ########.fr       */
+/*   Created: 2017/11/20 11:15:35 by saxiao            #+#    #+#             */
+/*   Updated: 2017/11/20 11:30:33 by saxiao           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	FILLIT_H
-#define	FILLIT_H
+#include "sq_fillit.h"
+#include "../includes/libft/libft.h"
 
-#define	BUFF_SIZE 21
-
-typedef	struct	s_list
+int		mini_sq(int nb_retri)
 {
-	unsigned short	tetri_value;
-	char			letter;
-	int				length;
-	int				height;
-	struct	s_list	*next;
-}				tetri_list;
+	int		i;
 
-void	ft_exit(const char *s);
-tetri_list	*ft_readfile(char const *file_name);
+	i = 1;
+	while ( i * i <= nb_retri * 4)
+		i++;
+	return (i);
+}
 
-#endif
+int		main(int ac, char **av)
+{
+	tetri_list	*list;
+
+
+	if(ac != 2)
+		ft_exit("not valie file number");
+	list = ft_readfile(av[1]);
+
+	
+	return (0);
+}
