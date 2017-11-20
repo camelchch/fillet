@@ -6,7 +6,7 @@
 /*   By: saxiao <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 09:03:21 by saxiao            #+#    #+#             */
-/*   Updated: 2017/11/20 11:30:39 by saxiao           ###   ########.fr       */
+/*   Updated: 2017/11/20 12:20:07 by saxiao           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <sys/uio.h>
 #include <sys/fcntl.h>
 #include <unistd.h>
+#include <string.h>
 #include "sq_fillit.h"
 #include "../includes/libft/libft.h"
 
@@ -146,6 +147,7 @@ tetri_list	*ft_readfile(char const *file_name)
 	tetri_list		*list;
 
 	nb_tetri = 0;
+	list = NULL;
 	fd = open(file_name, O_RDONLY);
 	if(fd == -1)
 		ft_exit("error");
