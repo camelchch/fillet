@@ -14,15 +14,30 @@
 #include "sq_fillit.h"
 #include "../includes/libft/libft.h"
 
-int		mini_sq(int nb_retri)
+int		mini_sq(tetri_list *list)
 {
 	int		i;
 
 	i = 1;
-	while ( i * i <= nb_retri * 4)
+	while (list->next)
+		list = list->next;
+	while ( i * i <= (list->letter - 'A' + 1) * 4)
 		i++;
 	return (i);
 }
+
+short	int *fit_map(tetri_list *list)	
+{
+	short	int *map;
+
+	if(!(map = (short int *)malloc(sizeof(*map) *mini_sq(list))))
+	return (NULL);
+	bzero(map,mini_sq(list) * sizeof(*map));
+
+
+
+
+
 
 void	print_tetri(unsigned short t)
 {
@@ -35,6 +50,7 @@ void	print_tetri(unsigned short t)
 			printf("1");
 		else
 			printf("0");
+		i--;
 	}
 	printf("\n");
 }

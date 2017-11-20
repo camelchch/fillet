@@ -17,8 +17,8 @@
 #include <sys/fcntl.h>
 #include <unistd.h>
 #include <string.h>
-#include "sq_fillit.h"
 #include "../includes/libft/libft.h"
+#include "sq_fillit.h"
 
 void	ft_exit(char const *s)
 {
@@ -59,7 +59,7 @@ void	only_dot_hash(char *s, int len)
 	{
 		if ((!((index + 1) % 5) || index == len -1))
 		{
-			if (s[index] != '\n')
+			if (s[index] && s[index]!= '\n')
 				ft_exit("error");
 		}
 		else
@@ -122,6 +122,7 @@ void  mv_left_top_calcu(tetri_list *list)
 tetri_list	*add_tetri(unsigned short value, int nb, tetri_list *old_list)
 {
 	tetri_list	*list;
+	tetri_list	*temp;
 
 	if(!(list = (tetri_list *)malloc(sizeof(*list))))
 		return (NULL);
@@ -134,7 +135,12 @@ tetri_list	*add_tetri(unsigned short value, int nb, tetri_list *old_list)
 	if(!old_list)
 		old_list = list;
 	else 
-		old_list->next = list;
+	{
+		temp = old_list;
+		while (temp->next)
+			temp = temp->next;
+		temp->next = list;
+	}
 	return (old_list);
 }
 
@@ -162,6 +168,7 @@ tetri_list	*ft_readfile(char const *file_name)
 		valid_tetri(value_tetri);
 		list = add_tetri(value_tetri, nb_tetri, list);
 		nb_tetri++;
+		ft_bzero(buff, BUFF_SIZE);
 	}
 	return (list);
 }

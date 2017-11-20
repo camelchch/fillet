@@ -26,5 +26,6 @@ typedef	struct	te_list
 
 void	ft_exit(char const *s);
 tetri_list	*ft_readfile(char const *file_name);
+void	print_tetri(unsigned short t);
 
 #endif
